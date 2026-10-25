@@ -1,0 +1,569 @@
+Practical No 1A : Collect data from real-life business scenario and perform exploratory data analysis (EDA) to gain insight into the dataset.
+import pandas as pd
+df = pd.read_csv('C:/Users/student/Desktop/TYCS35 ABA/employees.csv')
+print("\n Top record")
+print(df.head())
+print("\n Rows and Columns")
+print(df.shape)
+print("\n Summary report")
+print(df.describe())
+print("\n Information of Data")
+print(df.info())
+print("\n Number of unique enteries")
+print(df.nunique())
+print("\n Total No. of null values")
+print(df.isnull().sum())
+print(df["Gender"].fillna("No Gender", inplace = True))
+print(df.isnull().sum())
+print("\n")
+df.dropna(axis=0 , how ="any")
+print(df.isnull().sum())
+df.shape
+print("\n")
+
+Practical No 1B: Analyze customer data to identify trends and patterns that can be used for business decision-making.
+import pandas as pd
+import numpy as np
+df = pd.read_csv('iris.csv')
+print(df.filter(["Species","SepalLengthCm","SepalWidthCm"]).head())
+
+df= pd.read_csv('employees.csv')
+print("Before Sorting")
+print(df.head())
+df.sort_values(["Salary"],axis=0, ascending= [False], inplace = True)
+print("After Sorting")
+print(df)
+
+data ={
+    "Name": ["jai", "Princi", "Anuj", "Abhi","Gaurav","Abhi","Anuj","jai"],
+    "Age": [27,32,22,35,37,26,39,25],
+    "Address": ["Nagpur", "Kanpur" ,"Allahabad","Kannauj","Jaunpur","Kanpur", "Allahabad","Aligarh"],
+    "Qualification": ["M.Sc", "M.A", "MCA", "PhD","B.Tech","B.Com","M.SC","M.A"]
+    }
+
+df =pd.DataFrame(data)
+print("Original DataFrame")
+print(df)
+print("\n After GroupBy Name")
+gk =df.groupby("Name")
+print(gk.first())
+
+
+Practical No 2A : Obtain a Dataset and calculate descriptive statistic (mean , median ,mode, variance) for a specific variable of interest.
+A) Mean 
+In Excel it will be calculated by formula as: 
+Mean=AVERAGE(array of numbers) 
+Step1: Import data in excel than select an empty cell and type the given formula for finding the mean wile selecting the array from the data as (E2:E1001) 
+Mean=AVERAGE(E2:E1001)
+
+B) Median: 
+In Excel it will be calculated by formula as: 
+Median=MEDIAN(array of numbers) 
+Step1: Select an empty cell and type the given formula for finding the mean wile selecting the array from the data as (E2:E1001) 
+Median=MEDIAN(E2:E1001) 
+
+C) Mode: 
+In Excel it will be calculated by formula as:
+Mode=MODE(array of numbers)
+Step1: Select another empty cell and type the given formula for finding the mean wile selecting the array from the data as (E2:E1001) 
+Mode=MODE(E2:E1001)
+
+D) Variance: 
+In Excel it will be calculated by formula as: 
+Variance=VAR.P(array of numbers) 
+Step1: Select an another empty cell and type the given formula for finding the mean wile selecting the array from the data as (E2:E1001) 
+Variance=VAR.P(E2:E1001) 
+
+
+Practical No 2B - Create visualizations (Bar , Pie chart) to depict the distribution of a variable and analyse its characteristics.
+1) Open a csv file (employee.csv)
+2) Select 2 cloumns and go to insert -> chart -> bar chart / pie chart
+
+Practical No 3A - Use a dataset with multiple variable and perform correlation analysis to determine the strength and direction of relationship between pairs o variable .
+import pandas as pd
+df=pd.read_csv("data.csv")
+cr=(df.corr())
+print("Correlation of data set: \n",cr)
+
+Practical No 3B - Apply regression analysis to identify the relationship between independent variable and a dependent variable .
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+df=pd.read_csv('data2.csv')
+x=df.iloc[:,0].values.reshape(-1,1)
+y=df.iloc[:,1].values.reshape(-1,1)
+lr=LinearRegression()
+lr.fit(x,y)
+y_pr=lr.predict(x)
+plt.scatter(x,y)
+plt.plot(x,y_pr,color="red")
+plt.show()
+
+
+Practical No 4 - Business Intelligence Toos for Data Analysis: 
+a)Utilize a business intelligence tool(e. g., Tableau, Power BI) to extract insights from a dataset and create interactive visualization for effective data analysis. 
+Dataset Description: The dataset used is of BankCustomers. Upload the Dataset in Power BI and refer to the dataset to follow along with the below given sections of the article.
+Procedure:
+1) Pie Chart 
+Step1: Select the  +  symbol on bottom left to create a new page and rename it as Gender.
+Step2: Select the Pie Chart from Visualization panel. 
+Step3: Select Customer ID from BankCustomers dataset and drag and drop in into Values.
+Step4: Select Gender from BankCustomers dataset and drop and drag in into Legend.art
+
+2) Grouping and Bin Distribution: 
+Step1: Select the  +  symbol on bottom left to create a new page and rename it as Age. 
+Step2: Select Age from Fields. Right click on it and select New group. This will pop up a new window named Groups. 
+Step3: In Groups Window, set the bin size to 5. 
+Step4: Press OK. This will create a new column of Age(bins) in BankCustomers dataset. 
+Step5: Select Age(bins) from BankCustomers dataset and drag and drop int into the empty workplace.
+Step6: Add Customer ID from BankCustomers dataset and drag and drop it into Values. This will create a bin distribution of customers in a bank as per their ages.
+
+3) TreeMap 
+Step1: Select TreeMap from visualization panel. 
+Step2: Select following BankCustomers dataset and drag and drop it into values into the empty visualization.
+2.a - Customer ID 
+2.b - Gender 
+2.c - Job Classification 
+
+4) Bar Graph 
+Step1: Select Bar Graph from visualization panel. 
+Step2: Drag and Drop columns  Balance  and  Gender  it into the empty visualization from BankCustomers 
+dataset. 
+
+5) Interactive Dashboard 
+Step1: Select the  +  symbol on bottom left to create a new page and rename it as Dashboard. 
+Step2: Copy and Paste visuals from all your pages into this new page. 
+Step3: Add slicers (discussed in previous articles) to your dashboard to make it more interactive and visually appealing. Then drag and drop the following from BankCustomers dataset. 
+3.a - Data Joined 
+3.b - Region 
+This will create an interactive dashboard for your BI Report in Power BI.
+
+
+Practical 5A : Simulate probability experiment (e.g. rolling dice) using programming as and calculate the probability different outcomes.
+import numpy as np
+import matplotlib.pyplot as plt
+def dice(n):
+    rolls=[]
+    for i in range(n):
+        two_dice=(np.random.randint(1,7)+np.random.randint(1,7))
+        rolls.append(two_dice)
+    return rolls
+
+data=dice(99000)
+bins=np.arange(14)-0.5
+plt.hist(data,bins=bins, color="green", rwidth=0.85)
+plt.grid(True)
+plt.title("sum of 2 dice")
+plt.xlabel("sum of 2 dice")
+plt.ylabel("frequency of rolling number")
+plt.xticks(range(1,14))
+plt.xlim(1,13)
+plt.show()
+
+Practical 5B -Generate random numbers from various probability distributions (normal , uniform and exponential) and analyze their properties.
+import numpy as np
+import matplotlib.pyplot as plt
+
+Mean=100
+SD=5
+size=100000
+values=np.random.normal(Mean,SD,size)
+plt.hist(values,100)
+plt.axvline(values.mean(),color="k",linestyle="dashed",linewidth=2)
+plt.title("Normal Distribution")
+plt.show()
+
+gfg=np.random.uniform(-5,5,5000)
+plt.hist(gfg,bins=50,density=True)
+plt.title("Uniform Distribution")
+plt.show()
+
+np.random.seed(10)
+size=10000
+sample=np.random.exponential(1,size)
+bin=np.arange(0,10,0.1)
+plt.hist(sample, bins=bin,edgecolor="blue")
+plt.title("Exponential Distribution")
+plt.show()
+
+
+Practical 6A : Develop a Decision tree model to make business decision considering uncertainties and associated probabilities at each decision point .
+import pandas as pd
+df = pd.read_csv("Titanic.csv")
+print(df.head())
+
+df['age'] = df['age'].fillna (df['age'].median())
+df['embarked'] = df['embarked'].fillna (df['embarked'].mode() [0])
+
+df = pd.get_dummies(df, columns = ['sex' , 'embarked' , 'class', 'who'])
+
+from sklearn.model_selection import train_test_split
+x=df.drop('survived', axis = 1)
+y= df['survived']
+x_tr, x_ts , y_tr , y_ts = train_test_split(x,y , test_size = 0.2 , random_state =42)
+
+from sklearn.tree import DecisionTreeClassifier
+md = DecisionTreeClassifier()
+md.fit(x_tr , y_tr)
+
+from sklearn.metrics import accuracy_score
+y_pr = md.predict(x_ts)
+acc = accuracy_score(y_ts, y_pr)
+print(acc)
+
+
+Practical 6B   Apply the concept of expected value to evaluate different decision alternatives and select the optimal one.
+def cal_expect_val(prb , payoffs):
+    exp_val = 0
+    for prob , payoff in zip (prb, payoffs):
+        exp_val += prob * payoff
+    return exp_val
+
+def select_opt_decision_alter(dcs , exp_vals):
+    opt_dc =dcs[0]
+    max_exp_val = exp_vals[0]
+    for dc , ev in zip(dcs, exp_vals):
+        if ev > max_exp_val:
+            opt_dc = dc
+            max_exp_val = ev
+    return opt_dc
+
+prb=[0.3 , 0.5 , 0.2]
+payoffs = [[1000, 2000 , 3000] ,
+                 [ 1500, 1800, 2500],
+                [1200, 2200 , 2800]]
+dcs = ['A' , 'B' , 'C' ]
+
+exp_vals = []
+for payoff in payoffs:
+    exp_val = cal_expect_val(prb ,payoff)
+    exp_vals.append(exp_val)
+opt_dc = select_opt_decision_alter(dcs , exp_vals)
+print("Expected Values: " , exp_vals)
+print("Optimal Decision : " , opt_dc)
+
+
+Practical 7A   conduct a survey and collect data from a sample population , ensuring proper sampling techniques are employed .
+import random as rd
+population = list(range(1, 100))
+sample_size = 10
+sample = rd.sample(population , sample_size)
+print("Simple random sampling of 10 numbers are:", sample)
+
+import numpy as np
+population = np.arange(1,100)
+sample_size = 10
+sampling_interval = len(population)
+start_point = np.random.randint(0, sampling_interval)
+sample = population[start_point:: sampling_interval]
+print("Systematic or interval sampling of 10 numbers are:", sample)
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+df=pd.read_csv("Titanic.csv")
+stratify_by ='sex'
+tr, ts=train_test_split(df , test_size=0.3 , stratify=df [stratify_by])
+print("Stratified Sampling")
+print(" Train dataset:\n" , tr[stratify_by].value_counts())
+print("Test dataset:\n", ts[stratify_by].value_counts())
+
+import random as rd
+ppl_data = [10,15,20,26,29,33,35,37,41,42,46,48,50,52,58,61,64,68,72]
+clt_size = 5
+st_pnt = rd.randint(0, clt_size +1)
+sample_data = []
+
+for i in range(st_pnt, len(ppl_data),clt_size):
+    sample_data.append(ppl_data[i:i+clt_size])
+print("Cluster Sampling")
+print(st_pnt)
+print(sample_data)
+
+
+Practical 7B   Use the central limit theorem to analyze the sampling distribution of a sample mean and estimate population parameters.
+
+import numpy as np
+import random
+import matplotlib.pyplot as plt
+
+num =[1,10,50,100]
+means=[]
+for j in num:
+    np.random.seed(1)
+    x = [np.mean (np.random.randint(-40,40,j)) for _i in range(1000)]
+    means.append(x)
+    
+k =0
+fig,ax =plt.subplots(2,2, figsize=(8,8))
+
+for i in range(0,2):
+    for j in range(0,2):
+        ax[i,j].hist(means [k], 10 , density = True)
+        ax[i,j].set_title(label = num[k])
+        k= k+1
+plt.show()
+
+
+Practical 8A   Calculate confidence intervals for populations means or proportions using sample data and interpret the result in a business context.
+
+import statsmodels.api
+from statsmodels.stats.proportion import proportion_confint
+print(proportion_confint (310,1126 , alpha= (1-0.99)))
+
+Practical 8B   Apply bootstrapping techniques to estimate confidence intervals for non-parametric statistics .
+
+import numpy as np
+import random
+x = np.random.normal(loc =300.0, size = 1000)
+print(np.mean(x))
+sample_mean=[]
+for i in range (50):
+    y = random.sample(x.tolist(), 4)
+    avg = np.mean(y)
+    sample_mean.append(avg)
+print(np.mean(sample_mean))
+
+Practical 9A   Formulate null and alternative hypotheses related to business problem, conduct a hypothesis test using appropriate statistical tests and interpret the results.
+
+import numpy as np 
+from scipy import stats
+
+scores = [72,75,74,73,76,78,74,75,77,79,74,73,76,78,75,74,77,78,79,75]
+t_stat, p_value = stats.ttest_1samp(scores, 70)
+print("T-statistic:",round(t_stat,2))
+print("P-value:",p_value/2)
+
+if (p_value/2)<0.05:
+    print("Reject Null Hypothesis")
+    print("Training Program Improved Productivity")
+else:
+    print("Fail to Reject Null Hypothesis")
+
+
+Practical 9B   Perform A/B testing on a website or marketing campaign to evaluate the effectiveness of different strategies and data-driven decisions..
+
+import numpy as np 
+from scipy import stats
+from scipy.stats import ttest_ind
+
+A = [15,18,16,17,19,20,18,17,16,19]
+B = [20,22,21,23,24,22,21,23,24,25]
+
+t_stat, p_value = ttest_ind(B,A)
+print("T-statistic:",round(t_stat,2))
+print("P-value:",p_value/2)
+
+if (p_value/2)<0.05:
+    print("Reject Null Hypothesis")
+    print("Version B performs Better")
+else:
+    print("Fail to Reject Null Hypothesis")
+
+
+Practical 10A   Develop a regression model to predict future sales on historical data , assess model performance and interpret the significance of predictor variables.
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score,mean_squared_error
+
+data = {
+  'Advertisting':[10000,12000,15000,18000,20000,22000,25000,28000,30000,32000],
+  'Discount':[5,8,10,12,15,16,18,20,22,25],
+'Sales':[120000,140000,170000,195000,220000,240000,270000,300000,320000,350000]
+    }
+df=pd.DataFrame(data)
+print("Dataset")
+print(df)
+
+x =df[['Advertisting','Discount']]
+y =df['Sales']
+
+x_train, x_test, y_train, y_test=train_test_split(x,y , test_size=0.2,random_state=42)
+model = LinearRegression()
+model.fit(x_train, y_train)
+prediction=model.predict(x_test)
+
+print("\n Actual Sales")
+print(y_test.values)
+print("\n Predicted Sales")
+print(prediction)
+
+print("\n R2 Score:",round(r2_score(y_test,prediction),2))
+print("Mean Squares Error:",round(mean_squared_error(y_test,prediction),2))
+
+print("\n regression Coefficent")
+for feature,coef in zip(x.columns,model.coef_):
+ print(feature,"=",round(coef,2))
+print("Intercept=",round(model.intercept_,2))
+
+future=pd.DataFrame({
+    'Advertisting':[35000],
+    'Discount':[30]})
+
+future_sales=model.predict(future)
+print("\n Predicted Future Sales=Rs",round(future_sales[0],2))
+
+Practical 10B - Apply Time Series Analysis Techniques (e.g., ARIMA, exponential smoothing) to forecast future demand for a product or services, and evaluate the accuracy.Time Series Forecasting using ARIMA and Exponential Smoothing.
+   
+import pandas as pd
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+from statsmodels.tsa.arima.model import ARIMA
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+import numpy as np
+import warnings
+warnings.filterwarnings("ignore")
+   
+data = {
+       'Month': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+       'Demand': [120, 135, 150, 165, 180, 190, 210, 225, 240, 255, 270, 290]
+   }
+   
+df = pd.DataFrame(data)
+   
+print("Dataset")
+print(df)
+   
+train = df['Demand'][:10]
+test = df['Demand'][10:]
+   
+arima_model = ARIMA(train, order=(1, 1, 1))
+arima_fit = arima_model.fit()
+arima_forecast = arima_fit.forecast(steps=len(test))
+   
+print("\nARIMA Forecast")
+print(arima_forecast)
+   
+exp_model = ExponentialSmoothing(train, trend='add')
+exp_fit = exp_model.fit()
+exp_forecast = exp_fit.forecast(len(test))
+   
+print("\nExponential Smoothing Forecast")
+print(exp_forecast)
+   
+print("\nActual Demand")
+print(test.values)
+   
+mae_arima = mean_absolute_error(test, arima_forecast)
+rmse_arima = np.sqrt(mean_squared_error(test, arima_forecast))
+   
+mae_exp = mean_absolute_error(test, exp_forecast)
+rmse_exp = np.sqrt(mean_squared_error(test, exp_forecast))
+   
+print("\nARIMA Accuracy")
+print("MAE :", round(mae_arima, 2))
+print("RMSE :", round(rmse_arima, 2))
+   
+print("\nExponential Smoothing Accuracy")
+print("MAE :", round(mae_exp, 2))
+print("RMSE :", round(rmse_exp, 2))
+   
+if rmse_arima < rmse_exp:
+   print("\nARIMA gives better forecasting accuracy.")
+else:
+   print("\nExponential Smoothing gives better forecasting accuracy.")
+
+Practical 11A   Optimization modeling and simulation modeling:
+A)Formulate an optimization model (linear programming) to solve a real-world business problem and analyze the optimal solution.
+
+from scipy.optimize import linprog
+c=[-40, -30]
+A = [[2,1],
+     [1,1]]
+b =[100,80]
+
+x_bounds =(0, None)
+y_bounds =(0, None)
+
+result = linprog(
+    c, 
+    A_ub= A,
+    b_ub=b,
+    bounds=[x_bounds , y_bounds],
+    method='highs'
+    )
+print("Optimal Units of Product A:", round(result.x[0],2))
+print("Optimal Units of Product B:", round(result.x[1],2))
+print("Maximum product: ?", round(-result.fun, 2))
+
+Practical 11B   Use Simulation modeling to evaluate different business scenarios , such as capacity planning , inventory management , or pricing strategies , and assess their impact on performance metrics .
+import numpy as np
+inventory = 100
+reorder_level = 30
+reorder_quantity = 80
+days = 10
+
+np.random.seed(10)
+print("Day\tDemand\tInventory\tStatus")
+
+for day in range(1, days+1):
+    demand = np.random.randint(5,21)
+    inventory -= demand
+    
+    if inventory <= reorder_level:
+        inventory += reorder_quantity
+        status = "Reorder Placed"
+    else:
+        status = "No Placed"
+        
+    print(day, "\t", demand, "\t", inventory, "\t\t", status)
+
+print("\n Simulation Completed Successfully..")
+
+Practical 12: Analysis of Variance and Experimental Design:
+A)Design and conduct an experiment to study the effects of different factors on a specific response variable, analyze the results using analysis of variance (ANOVA), and draw conclusions.
+
+import pandas as pd
+from scipy.stats import f_oneway
+
+data = {
+        "Fertilizer": ["A","A","A","A","A",
+                       "B","B","B","B","B",
+                       "C","C","C","C","C"],
+        "Height": [20,22,21,23,24,
+                   25,26,27,25,28,
+                   30,31,29,32,30]
+        }
+
+df = pd.DataFrame(data)
+print("Dataset")
+print(df)
+
+A= df[df["Fertilizer"]=="A"]["Height"]
+B= df[df["Fertilizer"]=="B"]["Height"]
+C= df[df["Fertilizer"]=="C"]["Height"]
+
+F_statistic, p_value = f_oneway(A,B,C)
+
+print("\n ANOVA Results")
+print("F-Staistic =", round(F_statistic,2))
+print("p_value =", round(p_value,6))
+
+if p_value < 0.05:
+    print("\n Conclusion")
+    print("Reject the Null Hypothesis")
+    print("Different fertilizers significantly affect plant growth")
+else:
+    print("\n Conclusion")
+    print("Fail to Reject the Null Hypothesis.")
+    print("No significant difference among fertilizers.")
+
+Practical 12B   Implement a factorial experiment and analyze the main effects and interaction effects of factors using statistical techniques.
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+data = {
+        'Advertisement': ['Online','Online','Online','Online',
+                          'TV','TV','TV','TV'],
+        'Discount': ['10','10','20','20',
+                     '10','10','20','20'],
+        'Sales':[120,125,145,150,130,135,170,175]
+        }
+df = pd.DataFrame(data)
+print("Dataset")
+print(df)
+model = ols('Sales ~ C(Advertisement) + C(Discount) + C(Advertisement):C(Discount)',data = df).fit()
+anova_table = sm.stats.anova_lm(model, typ=2)
+print("\n Two-Way ANOVA Results")
+print(anova_table)
